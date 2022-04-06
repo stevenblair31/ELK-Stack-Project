@@ -9,7 +9,11 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+  -[](Scripts/install-elk.yml)
+  -[](Scripts/filebeat-configuration.yml)
+  -[](Scripts/filebeat-playbook.yml)
+  -[](Scripts/metricbeat-configuration.yml)
+  -[](Scripts/metricbeat-playbook.yml)
 
 This document contains the following details:
 - Description of the Topologu
@@ -111,39 +115,39 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to Kibana (Your IP Address:5601) to check that the installation worked as expected.
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
-
-ssh-keygen	create a ssh key for setup VM's
-sudo cat .ssh/id_rsa.pub	to view the ssh public key
-ssh azadmin@Jump-Box-Provisioner IP address	to log into the Jump-Box-Provisioner
-sudo docker container list -a	list all docker containers
-sudo docker container start cranky_volhard	start docker container cranky_volhard
-sudo docker container attach cranky_volhard	effectively sshing into the cranky_volhard container
-cd /etc/ansible	  Change directory to the Ansible directory
-ls -laA	   List all file in directory (including hidden)
-nano /etc/ansible/hosts	to edit the hosts file
-nano /etc/ansible/ansible.cfg	to edit the ansible.cfg file
-nano /etc/ansible/pentest.yml	to edit the My-Playbook
-ansible-playbook [location][filename]	to run the playbook
-ssh ansible@Web-1 IP address	to log into the Web-1 VM
-ssh ansible@Web-2 IP address	to log into the Web-2 VM
-ssh ansible@DVWA-VM3 IP address	to log into the DVWA-VM3 VM
-ssh ansible@ELKserver IP address	to log into the ELKserver VM
-exit	to exit out of docker containers/Jump-Box-Provisioners
-nano /etc/ansible/ansible.cfg	to edit the ansible.cfg file
-nano /etc/ansible/hosts	to edit the hosts file
-nano /etc/ansible/pentest.yml	to edit the My-Playbook
-ansible-playbook [location][filename]	to run the playbook
-sudo apt-get update	this will update all packages
-sudo apt install docker.io	install docker application
-sudo service docker start	start the docker application
-sudo systemctl status docker	status of the docker application
-sudo systemctl start docker	start the docker service
-sudo docker pull cyberxsecurity/ansible	pull the docker container file
-ansible -m ping all	check the connection of ansible containers
-curl -L -O [location of the file on the web]	to download a file from the web
-dpkg -i [filename]	to install the file i.e. (filebeat & metricbeat)
-http://http://13.64.153.58cd:5601//app/kibana	Open web browser and navigate to Kibana Logs
-nano filebeat-config.yml	create and edit filebeat config file
-nano filebeat-playbook.yml	write YAML file to install filebeat on webservers
-nano metricbeat-config.yml	create metricbeat config file and edit it
-nano metricbeat-playbook.yml	write YAML file to install metricbeat on webservers
+~~~sh
+ssh-keygen                          #create a ssh key for setup VM's
+sudo cat .ssh/id_rsa.pub	          #to view the ssh public key
+ssh azadmin@Jump-Box-Provisioner    #IP address	to log into the Jump-Box-Provisioner
+sudo docker container list -a	      #list all docker containers
+sudo docker container start cranky_volhard	#start docker container cranky_volhard
+sudo docker container attach cranky_volhard	#effectively sshing into the cranky_volhard container
+cd /etc/ansible	                    #Change directory to the Ansible directory
+ls -laA	                            #List all file in directory (including hidden)
+nano /etc/ansible/hosts	            #to edit the hosts file
+nano /etc/ansible/ansible.cfg	      #to edit the ansible.cfg file
+nano /etc/ansible/pentest.yml	      #to edit the My-Playbook
+ansible-playbook [location][filename]	#to run the playbook
+ssh ansible@Web-1 IP address	      #to log into the Web-1 VM
+ssh ansible@Web-2 IP address	      #to log into the Web-2 VM
+ssh ansible@ELKserver               #IP address	to log into the ELKserver VM
+exit                              	#to exit out of docker containers/Jump-Box-Provisioners
+nano /etc/ansible/ansible.cfg	      #to edit the ansible.cfg file
+nano /etc/ansible/hosts	            #to edit the hosts file
+nano /etc/ansible/pentest.yml	      #to edit the My-Playbook
+ansible-playbook [location][filename]	#to run the playbook
+sudo apt-get update	                #this will update all packages
+sudo apt install docker.io	        #install docker application
+sudo service docker start	          #start the docker application
+sudo systemctl status docker	      #status of the docker application
+sudo systemctl start docker	        #start the docker service
+sudo docker pull cyberxsecurity/ansible	#pull the docker container file
+ansible -m ping all	                #check the connection of ansible containers
+curl -L -O [location of the file on the web]	#to download a file from the web
+dpkg -i [filename]	                #to install the file i.e. (filebeat & metricbeat)
+http://http://13.64.153.58cd:5601//app/kibana	 #Open web browser and navigate to Kibana Logs
+nano filebeat-config.yml	          #create and edit filebeat config file
+nano filebeat-playbook.yml	        #write YAML file to install filebeat on webservers
+nano metricbeat-config.yml	        #create metricbeat config file and edit it
+nano metricbeat-playbook.yml	      #write YAML file to install metricbeat on webservers
+~~~
